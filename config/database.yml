@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: hello_world_development
+
+test:
+  <<: *default
+  database: hello_world_test
+
+production:
+  <<: *default
+  database: hello_world_production
+  username: postgres
+  password: <%= ENV['HELLO_WORLD_DATABASE_PASSWORD'] %>
+  host: <%= ENV['HELLO_WORLD_DATABASE_HOST'] %>
+  port: <%= ENV['HELLO_WORLD_DATABASE_PORT'] %>
